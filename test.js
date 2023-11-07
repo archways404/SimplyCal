@@ -1,5 +1,11 @@
 const { firefox } = require('playwright');
 
+require('dotenv').config();
+
+console.log(`${process.env.EMAIL}`);
+console.log(`${process.env.PASSWORD}`);
+
+
 async function main() {
 	const browser = await firefox.launch({
 		headless: false,
@@ -28,4 +34,4 @@ async function main() {
 	}
 }
 
-main();
+//main();
