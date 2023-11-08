@@ -5,7 +5,6 @@ require('dotenv').config();
 console.log(`${process.env.EMAIL}`);
 console.log(`${process.env.PASSWORD}`);
 
-
 async function main() {
 	const browser = await firefox.launch({
 		headless: false,
@@ -25,13 +24,17 @@ async function main() {
 
 	if (inputElement) {
 		// Type text into the input field
-		await inputElement.type('test@gmail.com');
-		await page.click(
-			'xpath=//html/body/main/section[1]/div[1]/header/div/div[2]/a'
-		);
+		await inputElement.type(process.env.EMAIL);
 	} else {
 		console.log('Element not found.');
 	}
+	await page.click('.VfPpkd-LgbsSe');
 }
 
-//main();
+// input pass
+// /html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[1]/div/form/span/section[2]/div/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]/input
+
+// next button
+// /html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[2]/div/div[1]/div/div/button/div[1]
+
+main();
