@@ -25,16 +25,23 @@ async function main() {
 	if (inputElement) {
 		// Type text into the input field
 		await inputElement.type(process.env.EMAIL);
+		await page.click('text=Next');
 	} else {
 		console.log('Element not found.');
 	}
-	await page.click('.VfPpkd-LgbsSe');
+	const inputElement2 = await page.waitForSelector('input[type="password"]');
+	if (inputElement2) {
+		await inputElement2.type(process.env.PASSWORD);
+		await page.click('text=Next');
+	} else {
+		console.log('Element not found.');
+	}
+
+	await page.waitForSelector('svg.NMm5M');
+	await page.click('svg.NMm5M');
+
+	await page.click('text=Import');
 }
 
-// input pass
-// /html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[1]/div/form/span/section[2]/div/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]/input
-
-// next button
-// /html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[2]/div/div[1]/div/div/button/div[1]
 
 main();
