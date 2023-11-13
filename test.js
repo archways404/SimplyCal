@@ -37,10 +37,32 @@ async function main() {
 		console.log('Element not found.');
 	}
 
-	await page.waitForSelector('svg.NMm5M');
-	await page.click('svg.NMm5M');
+	await page.waitForSelector('[aria-label="Add other calendars"]');
+	await page.click('[aria-label="Add other calendars"]');
 
 	await page.click('text=Import');
+
+	await page.waitForSelector('.VfPpkd-StrnGf-rymPhb', { visible: true });
+
+	await page.click(
+		'.VfPpkd-StrnGf-rymPhb .VfPpkd-StrnGf-rymPhb-ibnC6b:nth-child(5)'
+	); // 5th item is "Import"
+
+	// Locate the file input element and attach the file
+	const fileInput = await page.$('input[type="file"]');
+	if (fileInput) {
+		// Provide the path to the file you want to upload
+		const filePath = 'test1.ical'; // Replace with the actual file path
+
+		// Set the file input's value to the file path
+		await fileInput.setInputFiles(filePath);
+
+		console.log(`File '${filePath}' selected.`);
+	} else {
+		console.error('File input element not found.');
+		await browser.close();
+		return;
+	}
 }
 
 
