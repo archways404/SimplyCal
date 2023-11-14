@@ -52,7 +52,7 @@ async function main() {
 	const fileInput = await page.$('input[type="file"]');
 	if (fileInput) {
 		// Provide the path to the file you want to upload
-		const filePath = 'test1.ical'; // Replace with the actual file path
+		const filePath = 'calendarA.ics'; // Replace with the actual file path
 
 		// Set the file input's value to the file path
 		await fileInput.setInputFiles(filePath);
